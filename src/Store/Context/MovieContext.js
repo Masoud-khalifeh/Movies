@@ -4,9 +4,9 @@ import axios from "axios";
 export const MovieContextModule = createContext();
 
 export default function MovieContext({ children }) {
-    const [topRated, setTopRated] = useState();
-    const [upComming, setUpComming] = useState();
-    const [nowPlaying, setNowPlaying] = useState();
+    const [topRated, setTopRated] = useState([]);
+    const [upComming, setUpComming] = useState([]);
+    const [nowPlaying, setNowPlaying] = useState([]);
 
 
     useEffect(() => {
@@ -16,7 +16,7 @@ export default function MovieContext({ children }) {
     }, [])
 
     async function getTopRated() {
-        await axios.get('https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=vote_average.desc&without_genres=99,10755&vote_count.gte=200', {
+        await axios.get('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', {
             headers: {
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzdmMDlmNWIwNWMwYjYxMzY4YjI2YzA1MWY4YjAwOCIsInN1YiI6IjY0ZDExMjA3NGQ2NzkxMDBjNTJkMzYwMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lK2z6ziZKgS_uU3HGhbgjiOq3HwxfCzewCsfFJlRByA',
                 Accept: 'application/json',
@@ -80,7 +80,7 @@ export default function MovieContext({ children }) {
 
         )
             .then(response => {
-                data = response.data;
+                data = response.data.results;
 
             }
 
@@ -94,10 +94,32 @@ export default function MovieContext({ children }) {
     }
 
 
-    console.log("upComming", upComming);
-    console.log("topRated", topRated);
-    console.log("nowPlaying", nowPlaying);
-    console.log("movieDetail", getMovieDetail(615656));
+
+    async function getMovieImages(movieID) {
+        await axios.get(`https://api.themoviedb.org/3/movie/${movieID}/images`, {
+            headers: {
+                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzdmMDlmNWIwNWMwYjYxMzY4YjI2YzA1MWY4YjAwOCIsInN1YiI6IjY0ZDExMjA3NGQ2NzkxMDBjNTJkMzYwMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lK2z6ziZKgS_uU3HGhbgjiOq3HwxfCzewCsfFJlRByA',
+                Accept: 'application/json',
+            },
+        }
+
+        )
+            .then(response =>
+                {
+                    // console.log("getMovieImages",response.data)
+                })
+            .catch(error => {
+                console.log('Error', error)
+            }
+
+            )
+      
+    }
+
+    // getMovieImages(615656);
+    // console.log("upComming", upComming);
+    // console.log("topRated", topRated);
+    // console.log("nowPlaying", nowPlaying);
 
     return (
         <MovieContextModule.Provider value={{ topRated: topRated }}>
