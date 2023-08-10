@@ -9,6 +9,7 @@ export default function MovieContext({ children }) {
     const [nowPlaying, setNowPlaying] = useState([]);
 
 
+
     useEffect(() => {
         getTopRated();
         getUpComming();
