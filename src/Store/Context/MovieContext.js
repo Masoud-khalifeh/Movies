@@ -115,7 +115,7 @@ export default function MovieContext({ children }) {
 
 
     return (
-        <MovieContextModule.Provider value={{ topRated: topRated, nowPlaying:nowPlaying }}>
+        <MovieContextModule.Provider value={{ topRated: topRated, nowPlaying:nowPlaying, upComming:upComming }}>
             {children}
         </MovieContextModule.Provider>
     )

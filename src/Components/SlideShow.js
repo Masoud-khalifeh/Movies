@@ -120,7 +120,7 @@ export default function SlideShow(props) {
 
   return (
     <div className="slideShow">
-      <h2 className="slideTitle">{props.bigTitle}</h2>
+      {props.bigTitle && <h2 className="slideTitle">{props.bigTitle}</h2> }
       {props.secondTitle && <p className="secondTitle">{props.secondTitle}</p>}
       <Slider {...settings} className="slider">
         {movies}
