@@ -23,7 +23,7 @@ export default function TopRated() {
 
     return (
         <>
-            {loadMovies.length && <SlideShow movies={loadMovies} />}
+            {loadMovies.length && <SlideShow movies={loadMovies} bigTitle="Top 20 of this week"/>}
             
 
         </>

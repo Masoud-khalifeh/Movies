@@ -8,17 +8,52 @@ import SingleMovieVerticle from './SingleMovieVerticle';
 
 export default function SlideShow(props) {
 
-    const settings = {
+    let settings = {
         dots: false,
         infinite: true,
         slidesToShow: 5,
-        slidesToScroll: 1,
+        slidesToScroll: 5,
         swipeToSlide: true,
         arrows: true,
-        autoplay: true,
+        autoplay: false,
         speed: 1000,
         autoplaySpeed: 4000,
         cssEase: "linear",
+        responsive: [
+            {
+                breakpoint: 1300,
+                settings: {
+                  slidesToShow: 4,
+                  slidesToScroll: 4,
+                  infinite: true,
+                  dots: false
+                }
+              },
+            {
+              breakpoint: 1024,
+              settings: {
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                infinite: true,
+                dots: false
+              }
+            },
+            {
+              breakpoint: 800,
+              settings: {
+                slidesToShow: 2,
+                slidesToScroll: 2,
+                // initialSlide: 2
+              }
+            },
+            {
+              breakpoint: 480,
+              settings: {
+                slidesToShow: 1,
+                slidesToScroll: 1
+              }
+            }
+          ],
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />
     };
@@ -27,7 +62,7 @@ export default function SlideShow(props) {
 
     const movies = props.movies.map(item => {
         return (
-            <div key={item.id}>
+            <div key={item.id} >
                 <SingleMovieVerticle
                     key={item.id}
                     title={item.title}
@@ -71,9 +106,12 @@ export default function SlideShow(props) {
 
 
     return (
-        
-        <Slider {...settings} className="slider">
-            {movies}
-        </Slider>
+        <div className="slideShow">
+            <h2 className="slideTitle">{props.bigTitle}</h2>
+            <Slider {...settings} className="slider">
+                {movies}
+            </Slider>
+
+        </div>
     )
 }
