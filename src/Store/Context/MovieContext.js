@@ -7,6 +7,7 @@ export default function MovieContext({ children }) {
     const [topRated, setTopRated] = useState([]);
     const [upComming, setUpComming] = useState([]);
     const [nowPlaying, setNowPlaying] = useState([]);
+    const authorization='Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzdmMDlmNWIwNWMwYjYxMzY4YjI2YzA1MWY4YjAwOCIsInN1YiI6IjY0ZDExMjA3NGQ2NzkxMDBjNTJkMzYwMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lK2z6ziZKgS_uU3HGhbgjiOq3HwxfCzewCsfFJlRByA';
 
 
 
@@ -19,7 +20,7 @@ export default function MovieContext({ children }) {
     async function getTopRated() {
         const results = await axios.get('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', {
             headers: {
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzdmMDlmNWIwNWMwYjYxMzY4YjI2YzA1MWY4YjAwOCIsInN1YiI6IjY0ZDExMjA3NGQ2NzkxMDBjNTJkMzYwMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lK2z6ziZKgS_uU3HGhbgjiOq3HwxfCzewCsfFJlRByA',
+                Authorization:authorization ,
                 Accept: 'application/json',
             },
         })
@@ -35,7 +36,7 @@ export default function MovieContext({ children }) {
     async function getUpComming() {
         await axios.get('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', {
             headers: {
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzdmMDlmNWIwNWMwYjYxMzY4YjI2YzA1MWY4YjAwOCIsInN1YiI6IjY0ZDExMjA3NGQ2NzkxMDBjNTJkMzYwMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lK2z6ziZKgS_uU3HGhbgjiOq3HwxfCzewCsfFJlRByA',
+                Authorization: authorization,
                 Accept: 'application/json',
             },
         })
@@ -53,7 +54,7 @@ export default function MovieContext({ children }) {
     async function getNowPlaying() {
         await axios.get('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', {
             headers: {
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzdmMDlmNWIwNWMwYjYxMzY4YjI2YzA1MWY4YjAwOCIsInN1YiI6IjY0ZDExMjA3NGQ2NzkxMDBjNTJkMzYwMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lK2z6ziZKgS_uU3HGhbgjiOq3HwxfCzewCsfFJlRByA',
+                Authorization: authorization,
                 Accept: 'application/json',
             },
         })
@@ -71,7 +72,7 @@ export default function MovieContext({ children }) {
         let data = '';
         await axios.get(`https://api.themoviedb.org/3/movie/${movieID}?language=en-US`, {
             headers: {
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzdmMDlmNWIwNWMwYjYxMzY4YjI2YzA1MWY4YjAwOCIsInN1YiI6IjY0ZDExMjA3NGQ2NzkxMDBjNTJkMzYwMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lK2z6ziZKgS_uU3HGhbgjiOq3HwxfCzewCsfFJlRByA',
+                Authorization: authorization,
                 Accept: 'application/json',
             },
         }
@@ -96,7 +97,7 @@ export default function MovieContext({ children }) {
     async function getMovieImages(movieID) {
         await axios.get(`https://api.themoviedb.org/3/movie/${movieID}/images`, {
             headers: {
-                Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzdmMDlmNWIwNWMwYjYxMzY4YjI2YzA1MWY4YjAwOCIsInN1YiI6IjY0ZDExMjA3NGQ2NzkxMDBjNTJkMzYwMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lK2z6ziZKgS_uU3HGhbgjiOq3HwxfCzewCsfFJlRByA',
+                Authorization: authorization,
                 Accept: 'application/json',
             },
         }
@@ -114,7 +115,7 @@ export default function MovieContext({ children }) {
 
 
     return (
-        <MovieContextModule.Provider value={{ topRated: topRated }}>
+        <MovieContextModule.Provider value={{ topRated: topRated, nowPlaying:nowPlaying }}>
             {children}
         </MovieContextModule.Provider>
     )

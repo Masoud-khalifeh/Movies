@@ -1,0 +1,33 @@
+.original{
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height:20rem;
+aspect-ratio: 1.25/1;
+margin: auto;
+overflow:hidden ;
+}
+
+.orginalTop{
+height:70%;
+width: 100%;
+}
+
+.originalBottom{
+height:30%;
+width:100%
+}
+
+img{
+    object-fit: contain;
+}
+
+.originalTopText{
+color:white;
+margin: 3% 0 ;
+}
+
+.originalBottomText{
+color: #5e90d8;
+}
