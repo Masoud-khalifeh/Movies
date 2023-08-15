@@ -20,7 +20,7 @@ export default function SingleMovieVerticle(propos) {
                 </div>
                 <div className="button">
                     <button className="watchNow">Watch Now <BiLinkExternal className="icon"/></button>
-                    <button className="trailor"> <BsFillPlayFill/> Trailor</button>
+                    <button className="trailor"> <BsFillPlayFill className="icon"/> Trailor</button>
                 </div>
 
             </div>

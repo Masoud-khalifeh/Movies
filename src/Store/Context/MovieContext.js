@@ -17,22 +17,19 @@ export default function MovieContext({ children }) {
     }, [])
 
     async function getTopRated() {
-        await axios.get('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', {
+        const results = await axios.get('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', {
             headers: {
                 Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzdmMDlmNWIwNWMwYjYxMzY4YjI2YzA1MWY4YjAwOCIsInN1YiI6IjY0ZDExMjA3NGQ2NzkxMDBjNTJkMzYwMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lK2z6ziZKgS_uU3HGhbgjiOq3HwxfCzewCsfFJlRByA',
                 Accept: 'application/json',
             },
         })
-            .then(response => {
-                setTopRated(response.data.results)
-            })
+            .then(response => response.data.results)
             .catch(error => {
                 console.error('Error:', error);
             });
+        setTopRated(results);
 
     }
-
-
 
 
     async function getUpComming() {
@@ -105,22 +102,16 @@ export default function MovieContext({ children }) {
         }
 
         )
-            .then(response =>
-                {
-                    // console.log("getMovieImages",response.data)
-                })
+            .then(response => {
+            })
             .catch(error => {
                 console.log('Error', error)
             }
 
             )
-      
+
     }
 
-    // getMovieImages(615656);
-    // console.log("upComming", upComming);
-    // console.log("topRated", topRated);
-    // console.log("nowPlaying", nowPlaying);
 
     return (
         <MovieContextModule.Provider value={{ topRated: topRated }}>

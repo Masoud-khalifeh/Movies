@@ -1,11 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import '../Styles/SlideShow.css';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import SingleMovieVerticle from './SingleMovieVerticle';
 
-export default function SlideShow({ children }) {
+export default function SlideShow(props) {
 
     const settings = {
         dots: false,
@@ -23,8 +24,27 @@ export default function SlideShow({ children }) {
     };
 
 
+
+    const movies = props.movies.map(item => {
+        return (
+            <div key={item.id}>
+                <SingleMovieVerticle
+                    key={item.id}
+                    title={item.title}
+                    rate={item.vote_average}
+                    img={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+                />
+            </div>
+        )
+    }
+
+
+    );
+
+
+
     function SampleNextArrow(props) {
-        const {  onClick } = props;
+        const { onClick } = props;
         return (
             <div
                 className="arrowKey arrowKeyRight"
@@ -51,8 +71,9 @@ export default function SlideShow({ children }) {
 
 
     return (
+        
         <Slider {...settings} className="slider">
-            {children}
+            {movies}
         </Slider>
     )
 }
