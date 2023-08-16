@@ -1,0 +1,67 @@
+.singleMovieHorizontal {
+  display: flex;
+  width: 100%;
+  aspect-ratio: 2/0.9;
+  margin: 5% 0;
+  background-color: #2c2c2c;
+  padding: 5%;
+}
+
+.singleMovieHorizontal .left {
+  width: 30%;
+  background: none;
+}
+.singleMovieHorizontal .image {
+  width: 6rem;
+  background: none;
+}
+
+.singleMovieHorizontal .text {
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 15% 0 0 0;
+  background: none;
+}
+.singleMovieHorizontal .firstTitle {
+  font-weight: bold;
+  background: none;
+}
+
+.singleMovieHorizontal .secondTitle {
+  font-weight: 400;
+  font-size: smaller;
+  margin-top: 5%;
+  background: none;
+}
+
+.singleMovieHorizontal .right {
+  margin-left: 5%;
+  background: none;
+}
+.singleMovieHorizontal .right .link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+}
+
+.singleMovieHorizontal .right .button {
+  background: none;
+  display: flex;
+}
+
+.singleMovieHorizontal .right .playIcon {
+  color: white;
+  font-size: 1.5rem;
+  margin-right: 5%;
+  background: none;
+}
+
+.singleMovieHorizontal .right span {
+  color: white;
+  text-decoration: none;
+  background: none;
+}

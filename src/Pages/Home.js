@@ -3,6 +3,7 @@ import { MovieContextModule } from '../Store/Context/MovieContext';
 import '../Styles/Home.css';
 import SlideShow from "../Components/SlideShow";
 import Explore from "../Components/Explore";
+import SlideShowVerticle from "../Components/SlideShowVerticle";
 
 
 export default function Home() {
@@ -22,7 +23,7 @@ export default function Home() {
                     {nowPlaying.length && <SlideShow movies={nowPlaying} component="BigMovie" numberOfSlides={{ total: 1, first: 1, second: 1, third: 1, forth: 1 }} thirdTitle="Celebrity interviews, trending entertainment stories, and expert analysis" />}
                 </div>
                 <div className="verticleSlide">
-
+                {nowPlaying.length && <SlideShowVerticle movies={nowPlaying} bigTitle="Up Next" numberOfSlides={{ total: 3, first:2, second: 1, third: 1, forth: 1 }}  />}
                 </div>
             </div>
             <Explore />
