@@ -8,10 +8,12 @@ import SingleMovieVerticle from './SingleMovieVerticle';
 import Original from "./Original";
 
 export default function SlideShow(props) {
+  const [counter,setCounter]=useState(0);
+  const [show,setShow]=useState(true);
 
   let settings = {
     dots: false,
-    infinite: true,
+    infinite: false,
     slidesToShow: props.numberOfSlides.total,
     slidesToScroll: props.numberOfSlides.total,
     swipeToSlide: true,
@@ -93,10 +95,13 @@ export default function SlideShow(props) {
 
   function SampleNextArrow(props) {
     const { onClick } = props;
+    if(!onClick){
+      setShow(false);
+    }
     return (
       <div
-        className="arrowKey arrowKeyRight"
-        onClick={onClick}
+      className={show ?  "arrowKey arrowKeyRight":"inActive" }
+        onClick={()=>{onClick && onClick();onClick && setCounter(counter+1)}}
       >
         <IoIosArrowForward className="navIcon" />
       </div>
@@ -107,8 +112,8 @@ export default function SlideShow(props) {
     const { onClick } = props;
     return (
       <div
-        className="arrowKey arrowKeyLeft"
-        onClick={onClick}
+      className={counter==0 ? "inActive" :"arrowKey arrowKeyLeft" }
+      onClick={()=>{onClick(); setCounter(counter-1);setShow(true);}}
       >
         <IoIosArrowBack className="navIcon" />
       </div>

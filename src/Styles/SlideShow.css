@@ -66,3 +66,7 @@ color: white;
   font-size: 2rem;
   border-left-style:groove ;
 }
+
+.inActive{
+  display: none;
+}
