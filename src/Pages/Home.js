@@ -17,10 +17,18 @@ export default function Home() {
 
     return (
         <div className="homeContainer">
+            <div className="topHome">
+                <div className="bigSlide">
+                    {nowPlaying.length && <SlideShow movies={nowPlaying} component="BigMovie" numberOfSlides={{ total: 1, first: 1, second: 1, third: 1, forth: 1 }} thirdTitle="Celebrity interviews, trending entertainment stories, and expert analysis" />}
+                </div>
+                <div className="verticleSlide">
+
+                </div>
+            </div>
             <Explore />
-            {nowPlaying.length && <SlideShow movies={nowPlaying} bigTitle="Originals" component="Original" numberOfSlides={{total:3,first:2,second:1,third:1,forth:1}} secondTitle="Celebrity interviews, trending entertainment stories, and expert analysis"/>}
-            {nowPlaying.length && <SlideShow movies={nowPlaying} bigTitle="Now Playing Movies" component="SingleMovieVerticle" numberOfSlides={{total:5,first:4,second:3,third:2,forth:1}}/>}
-            {topRated.length && <SlideShow movies={topRated} bigTitle="Top 20 of this week" component="SingleMovieVerticle" numberOfSlides={{total:5,first:4,second:3,third:2,forth:1}}/>}
+            {nowPlaying.length && <SlideShow movies={nowPlaying} bigTitle="Originals" component="Original" numberOfSlides={{ total: 3, first: 2, second: 1, third: 1, forth: 1 }} secondTitle="Celebrity interviews, trending entertainment stories, and expert analysis" />}
+            {nowPlaying.length && <SlideShow movies={nowPlaying} bigTitle="Now Playing Movies" component="SingleMovieVerticle" numberOfSlides={{ total: 6, first: 5, second: 4, third: 3, forth: 2 }} />}
+            {topRated.length && <SlideShow movies={topRated} bigTitle="Top 20 of this week" component="SingleMovieVerticle" numberOfSlides={{ total: 6, first: 5, second: 4, third: 3, forth: 2 }} />}
         </div>
     )
 }

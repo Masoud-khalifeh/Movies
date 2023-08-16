@@ -11,3 +11,17 @@
     width: 1400px;
   }
 }
+
+.topHome{
+display: flex;
+width: 90%;
+}
+
+.bigSlide{
+  width: 70%;
+}
+
+.verticleSlide{
+  background-color: red;
+  width: 30%;
+}

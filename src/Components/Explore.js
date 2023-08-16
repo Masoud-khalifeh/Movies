@@ -17,6 +17,7 @@ export default function Explore() {
         listHandler(1);
     }, [sharedData.upComming])
 
+   
     function listHandler(status) {
         if (status === 1 && values.topRated.length) {
             setMovies(<SlideShow movies={values.topRated} component="SingleMovieVerticle" numberOfSlides={{ total: 5, first: 4, second: 3, third: 2, forth: 1 }} />);

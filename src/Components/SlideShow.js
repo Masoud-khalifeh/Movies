@@ -6,6 +6,7 @@ import '../Styles/SlideShow.css';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import SingleMovieVerticle from './SingleMovieVerticle';
 import Original from "./Original";
+import BigMovie from "./BigMovie";
 
 export default function SlideShow(props) {
   const [counter,setCounter]=useState(0);
@@ -80,6 +81,16 @@ export default function SlideShow(props) {
             key={item.id}
             title={item.title}
             rate={item.vote_average}
+            img={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+          />
+        </div>
+      )
+    }else if (props.component === "BigMovie") {
+      return (
+        <div key={item.id} >
+          <BigMovie
+            key={item.id}
+            title={item.title}
             img={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
           />
         </div>
