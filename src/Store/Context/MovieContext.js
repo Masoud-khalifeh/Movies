@@ -18,11 +18,7 @@ export default function MovieContext({ children }) {
 
     }, [])
 
-    useEffect(() => {
-        if (topRated.length) {
-            console.log("fdf", nowPlaying)
-        }
-    }, [nowPlaying])
+   
 
 
     async function getTopRated() {

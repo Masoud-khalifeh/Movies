@@ -31,7 +31,7 @@ export default function ScrollToTop() {
             className={`scroll-to-top ${isVisible ? "visible" : ""}`}
             onClick={scrollToTop}
         >
-            To Top
+            Back to top
         </div>
     );
 };

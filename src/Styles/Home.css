@@ -31,3 +31,8 @@ margin-bottom: 5rem;
   display: flex;
   justify-content: center;
 }
+
+.loader{
+  top: 45%;
+  position: absolute;
+}
