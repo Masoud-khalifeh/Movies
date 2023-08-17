@@ -4,6 +4,7 @@ import '../Styles/Home.css';
 import SlideShow from "../Components/SlideShow";
 import Explore from "../Components/Explore";
 import SlideShowVerticle from "../Components/SlideShowVerticle";
+import ScrollToTop from "../Components/ScrollToTop";
 
 
 export default function Home() {
@@ -11,7 +12,7 @@ export default function Home() {
     const [nowPlaying, setNowPlaying] = useState([]);
     const [topRated, setTopRated] = useState([]);
     const [upComming, setUpComming] = useState([]);
-    
+
 
     useEffect(() => {
         setNowPlaying(sharedData.nowPlaying);
@@ -26,13 +27,14 @@ export default function Home() {
                     {nowPlaying.length && <SlideShow movies={nowPlaying} component="BigMovie" numberOfSlides={{ total: 1, first: 1, second: 1, third: 1, forth: 1 }} thirdTitle="Celebrity interviews, trending entertainment stories, and expert analysis" />}
                 </div>
                 <div className="verticleSlide">
-                {nowPlaying.length && <SlideShowVerticle movies={nowPlaying} bigTitle="Up Next" numberOfSlides={{ total: 2, first:2, second: 1, third: 1, forth: 1 }}  />}
+                    {nowPlaying.length && <SlideShowVerticle movies={nowPlaying} bigTitle="Up Next" numberOfSlides={{ total: 2, first: 2, second: 1, third: 1, forth: 1 }} />}
                 </div>
             </div>
             <Explore />
             {nowPlaying.length && <SlideShow movies={nowPlaying} bigTitle="Originals" component="Original" numberOfSlides={{ total: 3, first: 2, second: 1, third: 1, forth: 1 }} secondTitle="Celebrity interviews, trending entertainment stories, and expert analysis" />}
             {nowPlaying.length && <SlideShow movies={nowPlaying} bigTitle="Now Playing Movies" component="SingleMovieVerticle" numberOfSlides={{ total: 6, first: 5, second: 4, third: 3, forth: 2 }} />}
             {topRated.length && <SlideShow movies={topRated} bigTitle="Top 20 of this week" component="SingleMovieVerticle" numberOfSlides={{ total: 6, first: 5, second: 4, third: 3, forth: 2 }} />}
+            <ScrollToTop />
         </div>
     )
 }

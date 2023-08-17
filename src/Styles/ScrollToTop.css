@@ -1,0 +1,29 @@
+.scroll-to-top {
+    position: fixed;
+    bottom: 1rem;
+    right: 35rem;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    padding: 1rem 1rem;
+    border-radius: 100rem;
+    background-color: orange;
+    color: black;
+    cursor: pointer;
+    outline: none;
+    font-size: larger;
+    font-weight: 800;
+  }
+  
+  .scroll-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+
+  
+  .scroll-to-top button:hover {
+    opacity: 50%;
+  }
+  
