@@ -16,9 +16,11 @@ export default function MovieContext({ children }) {
         getUpComming();
         getNowPlaying();
 
+        getVideo(238)
+
     }, [])
 
-   
+
 
 
     async function getTopRated() {
@@ -35,7 +37,10 @@ export default function MovieContext({ children }) {
 
         const newResults = await Promise.all(
             results.map(async item => {
-                return { ...item, details: await getMovieDetail(item.id), images: await getMovieImages(item.id) }
+                return {
+                    ...item, details: await getMovieDetail(item.id),
+                    images: await getMovieImages(item.id), videoUrl: await getVideo(item.id)
+                }
             })
         )
         setTopRated(newResults);
@@ -57,7 +62,10 @@ export default function MovieContext({ children }) {
 
         const newResults = await Promise.all(
             results.map(async item => {
-                return { ...item, details: await getMovieDetail(item.id), images: await getMovieImages(item.id) }
+                return {
+                    ...item, details: await getMovieDetail(item.id),
+                    images: await getMovieImages(item.id), videoUrl: await getVideo(item.id)
+                }
             })
         )
         setUpComming(newResults);
@@ -66,7 +74,7 @@ export default function MovieContext({ children }) {
 
 
 
-    
+
     async function getNowPlaying() {
         const results = await axios.get('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', {
             headers: {
@@ -81,7 +89,10 @@ export default function MovieContext({ children }) {
 
         const newResults = await Promise.all(
             results.map(async item => {
-                return { ...item, details: await getMovieDetail(item.id), images: await getMovieImages(item.id) }
+                return {
+                    ...item, details: await getMovieDetail(item.id),
+                    images: await getMovieImages(item.id), videoUrl: await getVideo(item.id)
+                }
             })
         )
         setNowPlaying(newResults);
@@ -129,8 +140,23 @@ export default function MovieContext({ children }) {
     }
 
 
+    async function getVideo(movieID) {
+        const results = await axios.get(`https://api.themoviedb.org/3/movie/${movieID}/videos?language=en-US`, {
+            headers: {
+                Authorization: authorization,
+                Accept: 'application/json'
+            }
+        })
+            .then(response => response.data.results)
+            .catch(error => {
+                console.log('Error', error)
+            })
+        const url = `https://www.youtube.com/watch?v=${results[0].key}`
+        return url;
 
+    }
 
+    console.log(topRated)
     return (
         <MovieContextModule.Provider value={{ topRated: topRated, nowPlaying: nowPlaying, upComming: upComming }}>
             {children}
