@@ -6,7 +6,7 @@ export default function Orginal(props) {
     return (
         <div className="original">
             <div className="orginalTop">
-                <img src={props.img} className="originalImage" />
+                <img src={props.bigImage} className="originalImage" />
 
             </div>
             <div className="originalBottom">

@@ -7,20 +7,28 @@ export default function MovieContext({ children }) {
     const [topRated, setTopRated] = useState([]);
     const [upComming, setUpComming] = useState([]);
     const [nowPlaying, setNowPlaying] = useState([]);
-    const authorization='Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzdmMDlmNWIwNWMwYjYxMzY4YjI2YzA1MWY4YjAwOCIsInN1YiI6IjY0ZDExMjA3NGQ2NzkxMDBjNTJkMzYwMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lK2z6ziZKgS_uU3HGhbgjiOq3HwxfCzewCsfFJlRByA';
+    const authorization = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzdmMDlmNWIwNWMwYjYxMzY4YjI2YzA1MWY4YjAwOCIsInN1YiI6IjY0ZDExMjA3NGQ2NzkxMDBjNTJkMzYwMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lK2z6ziZKgS_uU3HGhbgjiOq3HwxfCzewCsfFJlRByA';
 
 
 
     useEffect(() => {
         getTopRated();
         getUpComming();
-        getNowPlaying()
+        getNowPlaying();
+
     }, [])
+
+    useEffect(() => {
+        if (topRated.length) {
+            console.log("fdf", nowPlaying)
+        }
+    }, [nowPlaying])
+
 
     async function getTopRated() {
         const results = await axios.get('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', {
             headers: {
-                Authorization:authorization ,
+                Authorization: authorization,
                 Accept: 'application/json',
             },
         })
@@ -28,49 +36,66 @@ export default function MovieContext({ children }) {
             .catch(error => {
                 console.error('Error:', error);
             });
-        setTopRated(results);
+
+        const newResults = await Promise.all(
+            results.map(async item => {
+                return { ...item, details: await getMovieDetail(item.id), images: await getMovieImages(item.id) }
+            })
+        )
+        setTopRated(newResults);
 
     }
 
 
     async function getUpComming() {
-        await axios.get('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', {
+        const results = await axios.get('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', {
             headers: {
                 Authorization: authorization,
                 Accept: 'application/json',
             },
         })
-            .then(response => {
-                setUpComming(response.data.results)
-            })
+            .then(response => response.data.results)
             .catch(error => {
                 console.error('Error:', error);
             });
+
+        const newResults = await Promise.all(
+            results.map(async item => {
+                return { ...item, details: await getMovieDetail(item.id), images: await getMovieImages(item.id) }
+            })
+        )
+        setUpComming(newResults);
 
     }
 
 
 
+    
     async function getNowPlaying() {
-        await axios.get('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', {
+        const results = await axios.get('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', {
             headers: {
                 Authorization: authorization,
                 Accept: 'application/json',
             },
         })
-            .then(response => {
-                setNowPlaying(response.data.results)
-            })
+            .then(response => response.data.results)
             .catch(error => {
                 console.error('Error:', error);
             });
+
+        const newResults = await Promise.all(
+            results.map(async item => {
+                return { ...item, details: await getMovieDetail(item.id), images: await getMovieImages(item.id) }
+            })
+        )
+        setNowPlaying(newResults);
 
     }
 
 
     async function getMovieDetail(movieID) {
-        let data = '';
-        await axios.get(`https://api.themoviedb.org/3/movie/${movieID}?language=en-US`, {
+
+        const results = await axios.get(`https://api.themoviedb.org/3/movie/${movieID}?language=en-US`, {
             headers: {
                 Authorization: authorization,
                 Accept: 'application/json',
@@ -78,24 +103,19 @@ export default function MovieContext({ children }) {
         }
 
         )
-            .then(response => {
-                data = response.data.results;
-
-            }
-
-            )
+            .then(response => response.data)
             .catch(error => {
                 console.log('Error', error)
             }
 
             )
-        return data;
+        return results;
     }
 
 
 
     async function getMovieImages(movieID) {
-        await axios.get(`https://api.themoviedb.org/3/movie/${movieID}/images`, {
+        const results = await axios.get(`https://api.themoviedb.org/3/movie/${movieID}/images`, {
             headers: {
                 Authorization: authorization,
                 Accept: 'application/json',
@@ -103,19 +123,20 @@ export default function MovieContext({ children }) {
         }
 
         )
-            .then(response => {
-            })
+            .then(response => response.data)
             .catch(error => {
                 console.log('Error', error)
             }
 
             )
-
+        return results
     }
 
 
+
+
     return (
-        <MovieContextModule.Provider value={{ topRated: topRated, nowPlaying:nowPlaying, upComming:upComming }}>
+        <MovieContextModule.Provider value={{ topRated: topRated, nowPlaying: nowPlaying, upComming: upComming }}>
             {children}
         </MovieContextModule.Provider>
     )

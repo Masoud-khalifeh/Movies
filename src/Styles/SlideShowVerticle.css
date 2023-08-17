@@ -1,0 +1,76 @@
+.slideShowVerticle{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 8rem 0 0 0;
+  width:90%;
+  height: 300px;
+ 
+}
+
+.slideShowVerticle .slider {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+}
+
+
+.slideShowVerticle .arrowKey {
+  background-color: black;
+  height: 4rem;
+  width:3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 60%;
+  opacity: 50%;
+  border: 1px solid white;
+  font-size: 25px;
+  z-index: 10;
+  transition: all 0.3s ease ;
+}
+
+.slideShowVerticle .arrowKey:hover{
+cursor: pointer;
+}
+
+.slideShowVerticle .arrowKey:hover .navIcon{
+  cursor: pointer;
+  color: orange;
+  font-size: 2rem;
+  }
+
+  .slideShowVerticle .arrowKeyRight {
+  right: -15px;
+}
+
+.slideShowVerticle.arrowKeyLeft {
+  left: -15px;
+}
+
+.slideShowVerticle .navIcon{
+color: white;
+}
+
+.slideShowVerticle .secondTitle{
+  color:gray;
+  font-size: 150%;
+  margin: 0 0 2% 0;
+}
+
+
+.slideShowVerticle .slideTitle{
+  color:white;
+  border-left: 5px solid orange;
+  padding: 1%;
+  margin: 1% 0;
+  font-size: 2rem;
+  border-left-style:groove ;
+}
+
+.slideShowVerticle .inActive{
+  display: none;
+}

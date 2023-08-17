@@ -3,11 +3,8 @@ import React, { useState } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import '../Styles/SlideShow.css';
+import '../Styles/SlideShowVerticle.css';
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import SingleMovieVerticle from './SingleMovieVerticle';
-import Original from "./Original";
-import BigMovie from "./BigMovie";
 import SingleMovieHorizontal from "./SingleMovieHorizontal";
 
 export default function SlideShowVerticle(props) {
@@ -116,7 +113,7 @@ export default function SlideShowVerticle(props) {
 
 
     return (
-        <div className="slideShow">
+        <div className="slideShowVerticle">
             {props.bigTitle && <h2 className="slideTitle">{props.bigTitle}</h2>}
             {props.secondTitle && <p className="secondTitle">{props.secondTitle}</p>}
             <Slider {...settings} className="slider">

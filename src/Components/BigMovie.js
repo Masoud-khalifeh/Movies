@@ -3,10 +3,9 @@ import '../Styles/BigMovie.css';
 import { BsPlayCircle } from "react-icons/bs";
 
 export default function BigMovie(props) {
-
     return (
         <div className="bigMovie">
-            <img src={props.img} className="bigImage" />
+            <img src={props.bigImage} className="bigImage" />
             <div className="smallPart">
                 <div className="blackArea"></div>
                 <img src={props.img} className="smallImage" />

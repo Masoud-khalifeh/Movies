@@ -10,12 +10,15 @@ export default function Home() {
     const sharedData = useContext(MovieContextModule);
     const [nowPlaying, setNowPlaying] = useState([]);
     const [topRated, setTopRated] = useState([]);
+    const [upComming, setUpComming] = useState([]);
+    
 
     useEffect(() => {
         setNowPlaying(sharedData.nowPlaying);
         setTopRated(sharedData.topRated);
-    }, [sharedData.nowPlaying])
+        setUpComming(sharedData.upComming);
 
+    }, [sharedData.nowPlaying])
     return (
         <div className="homeContainer">
             <div className="topHome">
@@ -23,7 +26,7 @@ export default function Home() {
                     {nowPlaying.length && <SlideShow movies={nowPlaying} component="BigMovie" numberOfSlides={{ total: 1, first: 1, second: 1, third: 1, forth: 1 }} thirdTitle="Celebrity interviews, trending entertainment stories, and expert analysis" />}
                 </div>
                 <div className="verticleSlide">
-                {nowPlaying.length && <SlideShowVerticle movies={nowPlaying} bigTitle="Up Next" numberOfSlides={{ total: 3, first:2, second: 1, third: 1, forth: 1 }}  />}
+                {nowPlaying.length && <SlideShowVerticle movies={nowPlaying} bigTitle="Up Next" numberOfSlides={{ total: 2, first:2, second: 1, third: 1, forth: 1 }}  />}
                 </div>
             </div>
             <Explore />

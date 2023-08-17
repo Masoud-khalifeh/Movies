@@ -39,11 +39,11 @@ export default function Explore() {
         <div className="explore">
             
                 <nav className="navExplore">
-                    <button onClick={() => { listHandler(1) }} className={active === 1 && "active"}>Prime Video</button>
-                    <button onClick={() => { listHandler(2) }} className={active === 2 && "active"}>Netflix</button>
-                    <button onClick={() => { listHandler(3) }} className={active === 3 && "active"}>FreeVee</button>
-                    <button onClick={() => { listHandler(4) }} className={active === 4 && "active"}>MGM</button>
-                    <button onClick={() => { listHandler(5) }} className={active === 5 && "active"}>MUBI</button>
+                    <button onClick={() => { listHandler(1) }} className={active === 1 ? "active":""}>Prime Video</button>
+                    <button onClick={() => { listHandler(2) }} className={active === 2 ? "active":""}>Netflix</button>
+                    <button onClick={() => { listHandler(3) }} className={active === 3 ? "active":""}>FreeVee</button>
+                    <button onClick={() => { listHandler(4) }} className={active === 4 ? "active":""}>MGM</button>
+                    <button onClick={() => { listHandler(5) }} className={active === 5 ? "active":""}>MUBI</button>
                 </nav>
 
             <div className="slideExplore">

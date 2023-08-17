@@ -75,27 +75,39 @@ export default function SlideShow(props) {
         </div>
       )
     } else if (props.component === "Original"){
+      const backdropImage =
+        item.images.backdrops && item.images.backdrops[3]
+          ? `https://image.tmdb.org/t/p/w500/${item.images.backdrops[3].file_path}`
+          : `https://image.tmdb.org/t/p/w500/${item.poster_path}`;
       return (
         <div key={item.id} >
           <Original
             key={item.id}
             title={item.title}
+            bigImage={backdropImage}
             rate={item.vote_average}
             img={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
           />
         </div>
       )
-    }else if (props.component === "BigMovie") {
+    } else if (props.component === "BigMovie") {
+      const backdropImage =
+        item.images.backdrops && item.images.backdrops[3]
+          ? `https://image.tmdb.org/t/p/w500/${item.images.backdrops[3].file_path}`
+          : `https://image.tmdb.org/t/p/w500/${item.poster_path}`;
+      
       return (
-        <div key={item.id} >
+        <div key={item.id}>
           <BigMovie
             key={item.id}
             title={item.title}
+            bigImage={backdropImage}
             img={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
           />
         </div>
-      )
+      );
     }
+    
 
   }
 
