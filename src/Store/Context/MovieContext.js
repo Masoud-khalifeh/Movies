@@ -16,26 +16,23 @@ export default function MovieContext({ children }) {
     }, [])
 
 
-    useEffect(() => {
-        console.log("allmovies", allMovies)
-    }, [allMovies])
 
     /////////////////////////////////////////////
 
-async function fetchData(){
-    const topRated=await getTopRated();
-    const upComming= await getUpComming();
-    const nowPlaying =await getNowPlaying();
+    async function fetchData() {
+        const topRated = await getTopRated();
+        const upComming = await getUpComming();
+        const nowPlaying = await getNowPlaying();
 
-    const combined=topRated.concat(upComming,nowPlaying);
+        const combined = topRated.concat(upComming, nowPlaying);
 
-    setAllMovies(combined);
-    setLoaded(true);
-
-
-}
+        setAllMovies(combined);
+        setLoaded(true);
 
 
+    }
+
+  
     ////////////////////////////////////////////
 
     function getListOfMovies(status) {
@@ -52,7 +49,7 @@ async function fetchData(){
 
     ////////////////////////////////////////////
 
-    console.log("log", getDetails(1008042))
+
 
     async function getTopRated() {
         const results = await axios.get('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', {
@@ -127,7 +124,7 @@ async function fetchData(){
                 }
             })
         )
-        
+
         return newResults;
 
     }
@@ -198,7 +195,7 @@ async function fetchData(){
         <MovieContextModule.Provider value={{
 
             allMovies: allMovies, getVideo: getVideo, getDetails: getDetails,
-            getListOfMovies: getListOfMovies, loaded:loaded
+            getListOfMovies: getListOfMovies, loaded: loaded
         }}>
             {children}
         </MovieContextModule.Provider>

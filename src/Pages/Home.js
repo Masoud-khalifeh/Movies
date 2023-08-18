@@ -13,7 +13,6 @@ export default function Home() {
     const [nowPlaying, setNowPlaying] = useState([]);
     const [topRated, setTopRated] = useState([]);
     const [upComming, setUpComming] = useState([]);
-    const [loaded, setLoaded] = useState(true);
 
     
 
@@ -44,7 +43,7 @@ export default function Home() {
                             {nowPlaying.length && <SlideShowVerticle
                                 movies={nowPlaying}
                                 bigTitle="Up Next"
-                                numberOfSlides={{ total: 2, first: 2, second: 1, third: 1, forth: 1 }} />}
+                                numberOfSlides={{ total: 2, first: 2, second: 2, third: 1, forth: 1 }} />}
                         </div>
                     </div>
                     <Explore />
@@ -52,7 +51,7 @@ export default function Home() {
                         movies={upComming}
                         bigTitle="Originals"
                         component="Original"
-                        numberOfSlides={{ total: 3, first: 2, second: 1, third: 1, forth: 1 }}
+                        numberOfSlides={{ total: 3, first: 2, second: 2, third: 1, forth: 1 }}
                         secondTitle="Celebrity interviews, trending entertainment stories, and expert analysis" />}
 
                     {nowPlaying.length && <SlideShow

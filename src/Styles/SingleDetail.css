@@ -1,0 +1,16 @@
+.singleDetail {
+  width: 95%;
+  background: none;
+  margin: 2% 0;
+  padding: 2%;
+  line-height: 150%;
+  color: #5e90d8;
+  border-top: 0.1rem solid white;
+}
+
+.singleDetailTitle {
+    font-size: 1.2rem;
+  color: white;
+  padding-right: 2%;
+  background: none;
+}
