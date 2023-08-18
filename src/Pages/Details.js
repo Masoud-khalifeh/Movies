@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import '../Styles/Details.css'
 import { useState } from "react";
 import SingleDetail from "../Components/SingleDetail";
+import SlideShowVerticle from '../Components/SlideShowVerticle';
 import ReactLoading from 'react-loading';
 
 
@@ -59,7 +60,14 @@ export default function Details() {
                                         <SingleDetail title="Popularity">{detail.details.popularity}</SingleDetail>
                                     </div>
                                 }
-                                <div className="detailRelated"></div>
+                                <div className="detailRelated">
+                                    <SlideShowVerticle
+                                        movies={sharedData.getListOfMovies("upComming")}
+                                        bigTitle="Same Genres"
+                                        numberOfSlides={{ total: 3, first: 2, second: 2, third: 1, forth: 1 }} 
+                                    
+                                    />
+                                </div>
                             </div>
                         </div>
                     }
