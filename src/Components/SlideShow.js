@@ -68,6 +68,7 @@ export default function SlideShow(props) {
         <div key={item.id} >
           <SingleMovieVerticle
             key={item.id}
+            id={item.id}
             title={item.title}
             rate={item.vote_average}
             img={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
@@ -83,6 +84,7 @@ export default function SlideShow(props) {
         <div key={item.id} >
           <Original
             key={item.id}
+            id={item.id}
             title={item.title}
             bigImage={backdropImage}
             rate={item.vote_average}
@@ -100,6 +102,7 @@ export default function SlideShow(props) {
         <div key={item.id}>
           <BigMovie
             key={item.id}
+            id={item.id}
             title={item.title}
             bigImage={backdropImage}
             img={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}

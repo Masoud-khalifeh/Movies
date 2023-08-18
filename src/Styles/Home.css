@@ -36,3 +36,7 @@ margin-bottom: 5rem;
   top: 45%;
   position: absolute;
 }
+
+.link{
+  text-decoration: none;
+}

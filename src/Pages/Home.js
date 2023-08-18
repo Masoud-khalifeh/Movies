@@ -13,47 +13,59 @@ export default function Home() {
     const [nowPlaying, setNowPlaying] = useState([]);
     const [topRated, setTopRated] = useState([]);
     const [upComming, setUpComming] = useState([]);
-    const [loaded, setLoaded] = useState(false);
+    const [loaded, setLoaded] = useState(true);
 
-
-    useEffect(() => {
-        setTopRated(sharedData.topRated);
-        changeLoad()
-    }, [sharedData.topRated])
+    
 
     useEffect(() => {
-        setNowPlaying(sharedData.nowPlaying);
-        changeLoad()
-    }, [sharedData.nowPlaying])
+        setTopRated(sharedData.getListOfMovies("topRated"));
+        setNowPlaying(sharedData.getListOfMovies("nowPlaying"));
+        setUpComming(sharedData.getListOfMovies("upComming"));
+        
+    }, [sharedData.allMovies])
 
-    useEffect(() => {
-        setUpComming(sharedData.upComming);
-        changeLoad()
-    }, [sharedData.upComming])
 
-    function changeLoad() {
-        if (sharedData.topRated.length && sharedData.nowPlaying.length && sharedData.upComming.length) {
-            setLoaded(true)
-        }
-    }
+ 
     return (
         <div className="homeContainer">
-            {!loaded ?
+            {!sharedData.loaded ?
                 <ReactLoading type={"bars"} color={"white"} height={'5%'} width={'5%'} className="loader" />
                 :
                 <>
                     <div className="topHome">
                         <div className="bigSlide">
-                            {topRated.length && <SlideShow movies={topRated} component="BigMovie" numberOfSlides={{ total: 1, first: 1, second: 1, third: 1, forth: 1 }} thirdTitle="Celebrity interviews, trending entertainment stories, and expert analysis" />}
+                            {topRated.length && <SlideShow
+                                movies={upComming}
+                                component="BigMovie"
+                                numberOfSlides={{ total: 1, first: 1, second: 1, third: 1, forth: 1 }}
+                                thirdTitle="Celebrity interviews, trending entertainment stories, and expert analysis" />}
                         </div>
                         <div className="verticleSlide">
-                            {nowPlaying.length && <SlideShowVerticle movies={nowPlaying} bigTitle="Up Next" numberOfSlides={{ total: 2, first: 2, second: 1, third: 1, forth: 1 }} />}
+                            {nowPlaying.length && <SlideShowVerticle
+                                movies={nowPlaying}
+                                bigTitle="Up Next"
+                                numberOfSlides={{ total: 2, first: 2, second: 1, third: 1, forth: 1 }} />}
                         </div>
                     </div>
                     <Explore />
-                    {upComming.length && <SlideShow movies={upComming} bigTitle="Originals" component="Original" numberOfSlides={{ total: 3, first: 2, second: 1, third: 1, forth: 1 }} secondTitle="Celebrity interviews, trending entertainment stories, and expert analysis" />}
-                    {nowPlaying.length && <SlideShow movies={nowPlaying} bigTitle="Now Playing Movies" component="SingleMovieVerticle" numberOfSlides={{ total: 6, first: 5, second: 4, third: 3, forth: 2 }} />}
-                    {topRated.length && <SlideShow movies={topRated} bigTitle="Top 20 of this week" component="SingleMovieVerticle" numberOfSlides={{ total: 6, first: 5, second: 4, third: 3, forth: 2 }} />}
+                    {upComming.length && <SlideShow
+                        movies={upComming}
+                        bigTitle="Originals"
+                        component="Original"
+                        numberOfSlides={{ total: 3, first: 2, second: 1, third: 1, forth: 1 }}
+                        secondTitle="Celebrity interviews, trending entertainment stories, and expert analysis" />}
+
+                    {nowPlaying.length && <SlideShow
+                        movies={nowPlaying}
+                        bigTitle="Now Playing Movies"
+                        component="SingleMovieVerticle"
+                        numberOfSlides={{ total: 6, first: 5, second: 4, third: 3, forth: 2 }} />}
+
+                    {topRated.length && <SlideShow
+                        movies={topRated}
+                        bigTitle="Top 20 of this week"
+                        component="SingleMovieVerticle"
+                        numberOfSlides={{ total: 6, first: 5, second: 4, third: 3, forth: 2 }} />}
                     <ScrollToTop />
                 </>
             }

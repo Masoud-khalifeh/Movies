@@ -69,6 +69,7 @@ export default function SlideShowVerticle(props) {
             <div key={item.id} >
                 <SingleMovieHorizontal
                     key={item.id}
+                    id={item.id}
                     title={item.title}
                     rate={item.vote_average}
                     img={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}

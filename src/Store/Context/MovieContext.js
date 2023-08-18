@@ -4,24 +4,55 @@ import axios from "axios";
 export const MovieContextModule = createContext();
 
 export default function MovieContext({ children }) {
-    const [topRated, setTopRated] = useState([]);
-    const [upComming, setUpComming] = useState([]);
-    const [nowPlaying, setNowPlaying] = useState([]);
+    const [allMovies, setAllMovies] = useState([]);
     const authorization = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzdmMDlmNWIwNWMwYjYxMzY4YjI2YzA1MWY4YjAwOCIsInN1YiI6IjY0ZDExMjA3NGQ2NzkxMDBjNTJkMzYwMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lK2z6ziZKgS_uU3HGhbgjiOq3HwxfCzewCsfFJlRByA';
+    const [loaded, setLoaded] = useState(false);
 
 
 
     useEffect(() => {
-        getTopRated();
-        getUpComming();
-        getNowPlaying();
-
-        getVideo(238)
+        fetchData();
 
     }, [])
 
 
+    useEffect(() => {
+        console.log("allmovies", allMovies)
+    }, [allMovies])
 
+    /////////////////////////////////////////////
+
+async function fetchData(){
+    const topRated=await getTopRated();
+    const upComming= await getUpComming();
+    const nowPlaying =await getNowPlaying();
+
+    const combined=topRated.concat(upComming,nowPlaying);
+
+    setAllMovies(combined);
+    setLoaded(true);
+
+
+}
+
+
+    ////////////////////////////////////////////
+
+    function getListOfMovies(status) {
+        const list = allMovies.filter(item => item.status === status);
+        return list;
+    }
+
+    ////////////////////////////////////////////
+
+    function getDetails(movieID) {
+        const detail = allMovies.filter(item => item.id === movieID);
+        return detail;
+    }
+
+    ////////////////////////////////////////////
+
+    console.log("log", getDetails(1008042))
 
     async function getTopRated() {
         const results = await axios.get('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', {
@@ -39,14 +70,15 @@ export default function MovieContext({ children }) {
             results.map(async item => {
                 return {
                     ...item, details: await getMovieDetail(item.id),
-                    images: await getMovieImages(item.id), videoUrl: await getVideo(item.id)
+                    images: await getMovieImages(item.id), videoUrl: await getVideo(item.id), status: "topRated"
                 }
             })
         )
-        setTopRated(newResults);
+        return newResults;
 
     }
 
+    ///////////////////////////////////////////////////
 
     async function getUpComming() {
         const results = await axios.get('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', {
@@ -64,16 +96,16 @@ export default function MovieContext({ children }) {
             results.map(async item => {
                 return {
                     ...item, details: await getMovieDetail(item.id),
-                    images: await getMovieImages(item.id), videoUrl: await getVideo(item.id)
+                    images: await getMovieImages(item.id), videoUrl: await getVideo(item.id), status: "upComming"
                 }
             })
         )
-        setUpComming(newResults);
+        return newResults;
 
     }
 
 
-
+    //////////////////////////////////////////////////////
 
     async function getNowPlaying() {
         const results = await axios.get('https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1', {
@@ -91,14 +123,16 @@ export default function MovieContext({ children }) {
             results.map(async item => {
                 return {
                     ...item, details: await getMovieDetail(item.id),
-                    images: await getMovieImages(item.id), videoUrl: await getVideo(item.id)
+                    images: await getMovieImages(item.id), videoUrl: await getVideo(item.id), status: "nowPlaying"
                 }
             })
         )
-        setNowPlaying(newResults);
+        
+        return newResults;
 
     }
 
+    ///////////////////////////////////////////////////
 
     async function getMovieDetail(movieID) {
 
@@ -119,7 +153,7 @@ export default function MovieContext({ children }) {
         return results;
     }
 
-
+    ////////////////////////////////////////////////////////
 
     async function getMovieImages(movieID) {
         const results = await axios.get(`https://api.themoviedb.org/3/movie/${movieID}/images`, {
@@ -139,6 +173,7 @@ export default function MovieContext({ children }) {
         return results
     }
 
+    /////////////////////////////////////////////////////////
 
     async function getVideo(movieID) {
         const results = await axios.get(`https://api.themoviedb.org/3/movie/${movieID}/videos?language=en-US`, {
@@ -151,14 +186,20 @@ export default function MovieContext({ children }) {
             .catch(error => {
                 console.log('Error', error)
             })
-        const url = `https://www.youtube.com/watch?v=${results[0].key}`
+        let url = ''
+        if (results.length) {
+            url = `https://www.youtube.com/watch?v=${results[0].key}`
+        }
         return url;
 
     }
 
-    console.log(topRated)
     return (
-        <MovieContextModule.Provider value={{ topRated: topRated, nowPlaying: nowPlaying, upComming: upComming }}>
+        <MovieContextModule.Provider value={{
+
+            allMovies: allMovies, getVideo: getVideo, getDetails: getDetails,
+            getListOfMovies: getListOfMovies, loaded:loaded
+        }}>
             {children}
         </MovieContextModule.Provider>
     )

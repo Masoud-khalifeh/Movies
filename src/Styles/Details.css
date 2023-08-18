@@ -1,0 +1,56 @@
+.details {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 5%;
+}
+@media (width>1400px) {
+  .details {
+    width: 1400px;
+  }
+}
+
+.detailTop {
+  display: flex;
+  width: 90%;
+  height: 25rem;
+  justify-content: space-around;
+  align-items: center;
+  background-color: red;
+}
+
+.DetailImages {
+  width: 25%;
+  height: 90%;
+  background-color: green;
+}
+
+.DetailVideo {
+  width: 65%;
+  height: 90%;
+  background-color: blue;
+}
+
+.detailBottom {
+  width: 90%;
+  height: 35rem;
+  background-color: pink;
+  margin-top: 2.5%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.detailInfo {
+  width: 65%;
+  height: 90%;
+  background-color: green;
+}
+
+.detailRelated {
+  width: 25%;
+  height: 90%;
+  background-color: yellow;
+}
