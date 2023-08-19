@@ -6,6 +6,7 @@ import Explore from "../Components/Explore";
 import SlideShowVerticle from "../Components/SlideShowVerticle";
 import ScrollToTop from "../Components/ScrollToTop";
 import ReactLoading from 'react-loading';
+import { useLocation } from "react-router-dom";
 
 
 export default function Home() {
@@ -13,18 +14,24 @@ export default function Home() {
     const [nowPlaying, setNowPlaying] = useState([]);
     const [topRated, setTopRated] = useState([]);
     const [upComming, setUpComming] = useState([]);
+    const location = useLocation();
 
-    
+
+    useEffect(() => {
+        sharedData.scrollToTop(1000);
+    }, [location]);
+
+
 
     useEffect(() => {
         setTopRated(sharedData.getListOfMovies("topRated"));
         setNowPlaying(sharedData.getListOfMovies("nowPlaying"));
         setUpComming(sharedData.getListOfMovies("upComming"));
-        
+
     }, [sharedData.allMovies])
 
 
- 
+
     return (
         <div className="homeContainer">
             {!sharedData.loaded ?

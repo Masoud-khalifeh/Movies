@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { MovieContextModule } from "../Store/Context/MovieContext";
 import { useEffect } from "react";
 import '../Styles/Details.css'
@@ -7,27 +7,32 @@ import { useState } from "react";
 import SingleDetail from "../Components/SingleDetail";
 import SlideShowVerticle from '../Components/SlideShowVerticle';
 import ReactLoading from 'react-loading';
-import  YouTube  from "react-youtube";
+import YouTube from "react-youtube";
+import ScrollToTop from "../Components/ScrollToTop";
 
 
 export default function Details() {
     const sharedData = useContext(MovieContextModule);
+    const navigate= useNavigate();
     const [detail, setDetail] = useState([]);
 
-    const { movieID } = useParams();
+
+
+    let { movieID } = useParams();
 
 
 
     useEffect(() => {
         const data = sharedData.getDetails(parseInt(movieID))
-        if (data.length) {
+        if (data) {
             setDetail(data[0])
+        } else {
+            navigate("/not-found")
         }
-    }, [sharedData.allMovies])
+        sharedData.scrollToTop(0)
+    }, [movieID, sharedData.allMovies])
 
-    useEffect(() => {
-        console.log("detail", detail)
-    }, [detail])
+
 
     return (
         <>
@@ -70,6 +75,7 @@ export default function Details() {
                             </div>
                         </div>
                     }
+                    <ScrollToTop />
                 </>
             }
         </>

@@ -7,6 +7,7 @@ export default function MovieContext({ children }) {
     const [allMovies, setAllMovies] = useState([]);
     const authorization = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzdmMDlmNWIwNWMwYjYxMzY4YjI2YzA1MWY4YjAwOCIsInN1YiI6IjY0ZDExMjA3NGQ2NzkxMDBjNTJkMzYwMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lK2z6ziZKgS_uU3HGhbgjiOq3HwxfCzewCsfFJlRByA';
     const [loaded, setLoaded] = useState(false);
+    const [screenPosition, setScreenPosition] = useState("");
 
 
 
@@ -32,7 +33,7 @@ export default function MovieContext({ children }) {
 
     }
 
-  
+
     ////////////////////////////////////////////
 
     function getListOfMovies(status) {
@@ -44,7 +45,12 @@ export default function MovieContext({ children }) {
 
     function getDetails(movieID) {
         const detail = allMovies.filter(item => item.id === movieID);
-        return detail;
+        if(detail.length){
+            return detail;
+        }else {
+            return false
+        }
+        
     }
 
     ////////////////////////////////////////////
@@ -188,14 +194,31 @@ export default function MovieContext({ children }) {
             url = results[0].key
         }
         return url;
-
     }
+
+    /////////////////////////////////////////////
+
+    const scrollToTop = (top) => {
+        window.scrollTo({
+            top: top,
+            behavior: "smooth",
+        });
+    };
+
+
+    ///////////////////////////////////////////////
+    const getScreenPosition = () => {
+        const scrollY = window.scrollY;
+        return scrollY;
+    }
+
 
     return (
         <MovieContextModule.Provider value={{
 
             allMovies: allMovies, getVideo: getVideo, getDetails: getDetails,
-            getListOfMovies: getListOfMovies, loaded: loaded
+            getListOfMovies: getListOfMovies, loaded: loaded, scrollToTop: scrollToTop,
+            getScreenPosition:getScreenPosition, screenPosition:screenPosition
         }}>
             {children}
         </MovieContextModule.Provider>

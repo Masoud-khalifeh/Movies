@@ -4,12 +4,15 @@ import { FaStar } from "react-icons/fa";
 import { BiLinkExternal } from "react-icons/bi";
 import { BsFillPlayFill, BsFillBookmarkFill, BsPlus } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { MovieContextModule } from "../Store/Context/MovieContext";
 
 
 export default function SingleMovieVerticle(props) {
+    const sharedData = useContext(MovieContextModule);
 
     return (
-        <Link to={`/details/${props.id}`} className="link">
+        <Link to={`/details/${props.id}`} className="link" onClick={sharedData.getScreenPosition}>
             <div className="singleMovieContainer">
                 <div className="top">
                     <div className="bookMark"><BsFillBookmarkFill className="icon" /><BsPlus className="iconPlus" /></div>
