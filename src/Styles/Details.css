@@ -23,19 +23,27 @@
 }
 
 .detailImages {
-  width: 30%;
+  width: 40%;
   height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .detailImages img{
-  width: 100%;
-  height: 100%;
+  margin-top: 5%;
+  height: 83%;
+  width:100%;
   object-fit: fill;
 }
 
 .DetailVideo {
-  width: 65%;
-  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  height: 70%;
+  padding: 1%;
 }
 
 .detailIfram{
@@ -60,8 +68,9 @@
   align-items: center;
   background-color: #1d1c1c;
   width: 60%;
-  padding: 3%;
+  height: 90%;
   margin-top: 3%;
+  padding:3.5% 3% 7% 3%;
 }
 
 .detailRelated {

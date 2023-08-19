@@ -7,6 +7,7 @@ import { useState } from "react";
 import SingleDetail from "../Components/SingleDetail";
 import SlideShowVerticle from '../Components/SlideShowVerticle';
 import ReactLoading from 'react-loading';
+import  YouTube  from "react-youtube";
 
 
 export default function Details() {
@@ -39,16 +40,14 @@ export default function Details() {
                         <div className="details">
                             <div className="detailTop">
                                 <div className="detailImages">
-                                    <img src={`https://image.tmdb.org/t/p/w500/${detail.poster_path}`} />
+                                    <img src={`https://image.tmdb.org/t/p/w500/${detail.backdrop_path}`} />
                                 </div>
                                 <div className="DetailVideo">
-                                    <iframe
-                                        className="detailIfram"
-                                        src={detail.videoUrl}
-                                        title="YouTube Video"
-                                        frameBorder="0"
-                                        allowFullScreen
-                                    ></iframe>
+                                    <YouTube className="detailIfram" videoId={detail.videoUrl} opts={{
+                                        playerVars: {
+                                            autoplay: 0,
+                                        },
+                                    }} />
                                 </div>
                             </div>
                             <div className="detailBottom">
@@ -64,8 +63,8 @@ export default function Details() {
                                     <SlideShowVerticle
                                         movies={sharedData.getListOfMovies("upComming")}
                                         bigTitle="Same Genres"
-                                        numberOfSlides={{ total: 3, first: 2, second: 2, third: 1, forth: 1 }} 
-                                    
+                                        numberOfSlides={{ total: 3, first: 2, second: 2, third: 1, forth: 1 }}
+
                                     />
                                 </div>
                             </div>

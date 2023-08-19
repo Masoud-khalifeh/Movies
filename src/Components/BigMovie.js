@@ -5,7 +5,7 @@ import { BsPlayCircle } from "react-icons/bs";
 
 export default function BigMovie(props) {
     return (
-        <Link to={`/details/${props.id}`} link>
+        <Link to={`/details/${props.id}`} >
             <div className="bigMovie">
                 <img src={props.bigImage} className="bigImage" />
                 <div className="smallPart">

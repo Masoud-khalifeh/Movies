@@ -15,9 +15,7 @@ export default function SingleMovieHorizontal(props) {
                 </div>
                 <div className="right">
                     <div className="button">
-                        <Link to='' className="link">
                             <BsPlayCircle className="playIcon" /> <span>1:44</span>
-                        </Link>
                     </div>
                     <div className="text">
                         <p className="firstTitle"> {props.title}</p>

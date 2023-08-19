@@ -185,7 +185,7 @@ export default function MovieContext({ children }) {
             })
         let url = ''
         if (results.length) {
-            url = `https://www.youtube.com/watch?v=${results[0].key}`
+            url = results[0].key
         }
         return url;
 
