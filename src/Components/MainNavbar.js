@@ -26,7 +26,7 @@ export default function MainNavbar() {
             </Offcanvas.Header>
             <Offcanvas.Body>
 
-              <Nav className="justify-content-end flex-grow-1 pe-3">
+              <Nav className="justify-content-end flex-grow-2 pe-5">
                 <Nav.Link href="#action2">Pro</Nav.Link>
                 <Nav.Link href="#action1">Menu</Nav.Link>
               </Nav>
