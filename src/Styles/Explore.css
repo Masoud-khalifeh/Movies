@@ -8,13 +8,14 @@
 
 .navExplore{
     display: flex;
-
+    margin-bottom: 1%;
 }
 
-button{
+.navExplore button{
     color:white;
+    background:none;
     padding: 1% 1% 1% 0;
-    margin: 5%  0 -3%  0;
+    margin: 2%  0 -3%  0;
     border: none;
     z-index: 10;
     width: 15%;
@@ -29,7 +30,7 @@ button{
 }
 
 
-.active{
+.navExplore .active{
     border-bottom:0.3rem solid orange;
 }
 

@@ -12,15 +12,6 @@ export default function Explore() {
 
 
 
-    // useEffect(() => {
-    //     const topRated=sharedData.getListOfMovies("topRated");
-        
-    //     if (topRated.length) {
-    //         setMovies(<SlideShow movies={topRated} component="SingleMovieVerticle" numberOfSlides={{ total: 5, first: 4, second: 3, third: 2, forth: 1 }} />);
-    //     }
-
-
-    // }, [sharedData.allMovies])
 
     useEffect(() => {
         setValues( sharedData.allMovies);

@@ -1,4 +1,10 @@
 .app {
   display: flex;
   justify-content: center;
+  background-color: black;
+}
+
+.appSection{
+  display: flex;
+  justify-content: center;
 }

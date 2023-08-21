@@ -15,8 +15,8 @@
 .topHome{
 display: flex;
 width: 90%;
-height: 30em;
-align-items: center;
+height: 36em;
+align-items: flex-start;
 margin-bottom: 5rem;
 }
 

@@ -1,8 +1,17 @@
 .navbarSection {
-    position: fixed;
-    background-color: none;
-    width:100%;
-    z-index: 55500000;
-    
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: -0.2rem;
+  background-color: none;
+  width: 100%;
+  height: 8%;
+  z-index: 99;
+}
+
+@media (width>1400px) {
+  .navbarSection {
+    width: 1400px;
   }
-  
+}

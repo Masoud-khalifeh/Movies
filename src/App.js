@@ -17,7 +17,7 @@ function App() {
       {!sharedData.loaded ?
         <ReactLoading type={"bars"} color={"white"} height={'5%'} width={'5%'} className="loader" />
         :
-        <div >
+        <div className='appSection' >
           <Navbar />
           <Routes>
             <Route path="/" Component={Home} />

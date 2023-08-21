@@ -1,6 +1,5 @@
 .singleDetail {
-  width: 90%;
-  background: none;
+  width: 90%; 
   margin: 2% 0;
   padding: 2%;
   line-height: 150%;
@@ -12,5 +11,4 @@
     font-size: 1.2rem;
   color: white;
   padding-right: 2%;
-  background: none;
 }
