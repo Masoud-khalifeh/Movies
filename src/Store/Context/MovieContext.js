@@ -45,12 +45,12 @@ export default function MovieContext({ children }) {
 
     function getDetails(movieID) {
         const detail = allMovies.filter(item => item.id === movieID);
-        if(detail.length){
+        if (detail.length) {
             return detail;
-        }else {
+        } else {
             return false
         }
-        
+
     }
 
     ////////////////////////////////////////////
@@ -199,17 +199,19 @@ export default function MovieContext({ children }) {
     /////////////////////////////////////////////
 
     const scrollToTop = (top) => {
-        window.scrollTo({
-            top: top,
-            behavior: "smooth",
-        });
+        setTimeout(() => {
+            window.scrollTo({
+                top: top,
+                behavior: "smooth",
+            });
+        }, )
     };
 
 
     ///////////////////////////////////////////////
     const getScreenPosition = () => {
         const scrollY = window.scrollY;
-        return scrollY;
+        setScreenPosition(scrollY);
     }
 
 
@@ -218,7 +220,7 @@ export default function MovieContext({ children }) {
 
             allMovies: allMovies, getVideo: getVideo, getDetails: getDetails,
             getListOfMovies: getListOfMovies, loaded: loaded, scrollToTop: scrollToTop,
-            getScreenPosition:getScreenPosition, screenPosition:screenPosition
+            getScreenPosition: getScreenPosition, screenPosition: screenPosition
         }}>
             {children}
         </MovieContextModule.Provider>
