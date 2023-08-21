@@ -39,7 +39,7 @@ export default function Home() {
         <div className="homeContainer" onClick={sharedData.getScreenPosition}>
             <div className="topHome">
                 <div className="bigSlide">
-                    {topRated.length && <SlideShow
+                    {upComming.length && <SlideShow
                         movies={upComming}
                         component="BigMovie"
                         numberOfSlides={{ total: 1, first: 1, second: 1, third: 1, forth: 1 }}
