@@ -26,6 +26,9 @@ export default function Login() {
                     <Button variant="primary" id="submitAccountButton" type="submit">
                         Submit
                     </Button>
+                    <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                        <Form.Check type="checkbox" label="Keep me signed in." />
+                    </Form.Group>
                     <p>New to this website? <Link to={"/Signup"}>Sign in</Link>  </p>
                 </Form>
             </section>
