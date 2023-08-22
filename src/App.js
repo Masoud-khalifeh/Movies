@@ -17,7 +17,7 @@ function App() {
   const sharedData = useContext(MovieContextModule);
 
   return (
-    <>
+    <div className='whole'>
       {!sharedData.loaded ?
         <div className='loading'>
           <ReactLoading type={"bars"} color={"white"} height={'5%'} width={'5%'} className="loader" />
@@ -40,7 +40,7 @@ function App() {
 
       }
 
-    </>
+    </div>
   )
 }
 

@@ -31,7 +31,7 @@
 }
 
 .signinChoose h3 {
-    padding-top: 5%;
+  padding-top: 5%;
   font-weight: 600;
   font-size: large;
 }
@@ -49,7 +49,7 @@
 
 .signinChoose button > * {
   font-size: 2rem;
-  margin:0 4% 0 2%;
+  margin: 0 4% 0 2%;
 }
 
 .signinChoose .createNew {
@@ -63,30 +63,64 @@
   text-align: center;
 }
 
-
-#submitAccountButton{
+#submitAccountButton {
   background-color: orange;
-  width:100%;
-  color:black;
-  border:none
+  width: 100%;
+  color: black;
+  border: none;
 }
 
-
-.signin{
+.signin {
   display: flex;
   justify-content: center;
   background-color: white;
   width: 100%;
 }
 
-.signin .main{
-  width:35%;
+.signin .main {
+  width: 35%;
   margin-top: 3%;
-  border:0.1rem solid rgb(158, 156, 156);
+  border: 0.1rem solid rgb(158, 156, 156);
   padding: 4%;
   padding-bottom: 0;
 }
 
-.signin .main p{
+.signin .main p {
   margin-top: 15%;
+}
+
+.sideWhole {
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+}
+
+@media (width<1000px) {
+  .signinChoose {
+    width: 120%;
+  }
+
+  .signinChoose {
+    flex-direction: column;
+    align-items: center;
+  }
+  .signinChoose .left {
+    width: 80%;
+    margin-top: 10%;
+  }
+  .signinChoose .right {
+    width: 60%;
+    margin-top: 10%;
+  }
+}
+
+@media (width<500px) {
+  .signinChoose .left {
+    width: 100%;
+    margin-top: 20%;
+    font-size: x-small;
+  }
+  .signinChoose .right {
+    width: 80%;
+  }
 }

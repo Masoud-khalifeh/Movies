@@ -1,3 +1,7 @@
+.whole{
+background-color: black;
+
+}
 .loading {
   display: flex;
   justify-content: center;
@@ -12,6 +16,13 @@
   display: flex;
   justify-content: center;
   background-color: black;
+}
+
+@media (width>1400px) {
+  .appSection {
+    width: 1400px;
+    margin: auto
+  }
 }
 
 .loader{

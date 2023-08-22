@@ -3,12 +3,11 @@ import { Link } from "react-router-dom";
 import '../Styles/BigMovie.css';
 import { BsPlayCircle } from "react-icons/bs";
 import { useContext } from "react";
-import { MovieContextModule } from "../Store/Context/MovieContext";
+
 
 export default function BigMovie(props) {
-    const sharedData = useContext(MovieContextModule);
     return (
-        <Link to={`/details/${props.id}`} onClick={sharedData.getScreenPosition}>
+        <Link to={`/details/${props.id}`}>
             <div className="bigMovie" >
                 <img src={props.bigImage} className="bigImage" />
                 <div className="smallPart">

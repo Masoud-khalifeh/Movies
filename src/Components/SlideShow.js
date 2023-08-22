@@ -8,160 +8,151 @@ import SingleMovieVerticle from './SingleMovieVerticle';
 import Original from "./Original";
 import BigMovie from "./BigMovie";
 
-export default function SlideShow(props) {
-  const [counter, setCounter] = useState(0);
-  const [show, setShow] = useState(true);
+const SlideShow=React.memo(
+  function SlideShow(props) {
+    const [counter, setCounter] = useState(0);
+    const [show, setShow] = useState(true);
 
-  let settings = {
-    dots: false,
-    infinite: false,
-    slidesToShow: props.numberOfSlides.total,
-    slidesToScroll: props.numberOfSlides.total,
-    swipeToSlide: true,
-    arrows: true,
-    autoplay: false,
-    speed: 1000,
-    autoplaySpeed: 4000,
-    cssEase: "linear",
-    responsive: [
-      {
-        breakpoint: 1300,
-        settings: {
-          slidesToShow: props.numberOfSlides.first,
-          slidesToScroll: props.numberOfSlides.first,
-          infinite: true,
-          dots: false
+    let settings = {
+      dots: false,
+      infinite: false,
+      slidesToShow: props.numberOfSlides.total,
+      slidesToScroll: props.numberOfSlides.total,
+      swipeToSlide: true,
+      arrows: true,
+      autoplay: false,
+      speed: 1000,
+      autoplaySpeed: 4000,
+      cssEase: "linear",
+      responsive: [
+        {
+          breakpoint: 1300,
+          settings: {
+            slidesToShow: props.numberOfSlides.first,
+            slidesToScroll: props.numberOfSlides.first,
+            infinite: true,
+            dots: false
+          }
+        },
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: props.numberOfSlides.second,
+            slidesToScroll: props.numberOfSlides.second,
+            infinite: true,
+            dots: false
+          }
+        },
+        {
+          breakpoint: 800,
+          settings: {
+            slidesToShow: props.numberOfSlides.third,
+            slidesToScroll: props.numberOfSlides.third,
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: props.numberOfSlides.forth,
+            slidesToScroll: props.numberOfSlides.forth
+          }
         }
-      },
-      {
-        breakpoint: 1024,
-        settings: {
-          slidesToShow: props.numberOfSlides.second,
-          slidesToScroll: props.numberOfSlides.second,
-          infinite: true,
-          dots: false
-        }
-      },
-      {
-        breakpoint: 800,
-        settings: {
-          slidesToShow: props.numberOfSlides.third,
-          slidesToScroll: props.numberOfSlides.third,
-        }
-      },
-      {
-        breakpoint: 480,
-        settings: {
-          slidesToShow: props.numberOfSlides.forth,
-          slidesToScroll: props.numberOfSlides.forth
-        }
-      }
-    ],
-    nextArrow: <SampleNextArrow />,
-    prevArrow: <SamplePrevArrow />
-  };
+      ],
+      nextArrow: <SampleNextArrow />,
+      prevArrow: <SamplePrevArrow />
+    };
 
-
-  const movies = props.movies.map(item => {
-    if (props.component === "SingleMovieVerticle") {
-      return (
-        <div key={item.id} >
-          <SingleMovieVerticle
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            rate={item.vote_average}
-            img={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-          />
-        </div>
-      )
-    } else if (props.component === "Original") {
-      const backdropImage =
-        item.images.backdrops && item.images.backdrops[3]
-          ? `https://image.tmdb.org/t/p/w500/${item.images.backdrops[3].file_path}`
-          : `https://image.tmdb.org/t/p/w500/${item.poster_path}`;
-      return (
-        <div key={item.id} >
-          <Original
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            bigImage={backdropImage}
-            rate={item.vote_average}
-            img={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-          />
-        </div>
-      )
-    } else if (props.component === "BigMovie") {
-      const backdropImage =
-        item.images.backdrops && item.images.backdrops[3]
-          ? `https://image.tmdb.org/t/p/w500/${item.images.backdrops[3].file_path}`
-          : `https://image.tmdb.org/t/p/w500/${item.poster_path}`;
-      const load = () => {
+    const movies = props.movies.map(item => {
+      if (props.component === "SingleMovieVerticle") {
         return (
-          <BigMovie
-            key={item.id}
-            id={item.id}
-            title={item.title}
-            bigImage={backdropImage}
-            img={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
-          />
+          <div key={item.id} >
+            <SingleMovieVerticle
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              rate={item.vote_average}
+              img={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+            />
+          </div>
         )
+      } else if (props.component === "Original") {
+        const backdropImage =
+          item.images.backdrops && item.images.backdrops[3]
+            ? `https://image.tmdb.org/t/p/w500/${item.images.backdrops[3].file_path}`
+            : `https://image.tmdb.org/t/p/w500/${item.poster_path}`;
+        return (
+          <div key={item.id} >
+            <Original
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              bigImage={backdropImage}
+              rate={item.vote_average}
+              img={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+            />
+          </div>
+        )
+      } else if (props.component === "BigMovie") {
+        const backdropImage =
+          item.images.backdrops && item.images.backdrops[3]
+            ? `https://image.tmdb.org/t/p/w500/${item.images.backdrops[3].file_path}`
+            : `https://image.tmdb.org/t/p/w500/${item.poster_path}`;
+        return (
+          <div key={item.id} >
+            <BigMovie
+              key={item.id}
+              id={item.id}
+              title={item.title}
+              bigImage={backdropImage}
+              img={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
+            />
+
+          </div>
+        );
+      }
+    }
+    );
+
+    function SampleNextArrow(props) {
+      const { onClick } = props;
+      if (!onClick) {
+        setShow(false);
       }
 
       return (
-        <div key={item.id}>
-          {load()}
+        <div
+          className={show ? "arrowKey arrowKeyRight" : "inActive"}
+          onClick={() => { onClick && onClick(); onClick && setCounter(counter + 1) }}
+        >
+          <IoIosArrowForward className="navIcon" />
         </div>
       );
     }
 
-
-  }
-
-
-  );
-
-
-
-  function SampleNextArrow(props) {
-    const { onClick } = props;
-    if (!onClick) {
-      setShow(false);
+    function SamplePrevArrow(props) {
+      const { onClick } = props;
+      return (
+        <div
+          className={counter == 0 ? "inActive" : "arrowKey arrowKeyLeft"}
+          onClick={() => { onClick(); setCounter(counter - 1); setShow(true); }}
+        >
+          <IoIosArrowBack className="navIcon" />
+        </div>
+      );
     }
+
     return (
-      <div
-        className={show ? "arrowKey arrowKeyRight" : "inActive"}
-        onClick={() => { onClick && onClick(); onClick && setCounter(counter + 1) }}
-      >
-        <IoIosArrowForward className="navIcon" />
+      <div className="slideShow">
+        {props.bigTitle && <h2 className="slideTitle">{props.bigTitle}</h2>}
+        {props.secondTitle && <p className="secondTitle">{props.secondTitle}</p>}
+        <Slider {...settings} className="slider">
+          {movies}
+        </Slider>
+
       </div>
-    );
+
+    )
   }
+)
 
-  function SamplePrevArrow(props) {
-    const { onClick } = props;
-    return (
-      <div
-        className={counter == 0 ? "inActive" : "arrowKey arrowKeyLeft"}
-        onClick={() => { onClick(); setCounter(counter - 1); setShow(true); }}
-      >
-        <IoIosArrowBack className="navIcon" />
-      </div>
-    );
-  }
-
-
-
-
-  return (
-    <div className="slideShow">
-      {props.bigTitle && <h2 className="slideTitle">{props.bigTitle}</h2>}
-      {props.secondTitle && <p className="secondTitle">{props.secondTitle}</p>}
-      <Slider {...settings} className="slider">
-        {movies}
-      </Slider>
-
-    </div>
-  )
-}
+export default SlideShow;

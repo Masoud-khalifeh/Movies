@@ -43,7 +43,7 @@ export default function Home() {
                         movies={upComming}
                         component="BigMovie"
                         numberOfSlides={{ total: 1, first: 1, second: 1, third: 1, forth: 1 }}
-                        thirdTitle="Celebrity interviews, trending entertainment stories, and expert analysis" />}
+                         />}
                 </div>
                 <div className="verticleSlide">
                     {nowPlaying.length && <SlideShowVerticle
