@@ -7,15 +7,18 @@ import Details from "./Pages/Details";
 import NotFoundPage from "./Pages/NotFoundPage";
 import Navbar from "./Components/MainNavbar";
 import ReactLoading from 'react-loading';
+import Signin from './Pages/Signin';
 
 
 function App() {
   const sharedData = useContext(MovieContextModule);
 
   return (
-    <div className="app">
+    <>
       {!sharedData.loaded ?
-        <ReactLoading type={"bars"} color={"white"} height={'5%'} width={'5%'} className="loader" />
+        <div className='loading'>
+          <ReactLoading type={"bars"} color={"white"} height={'5%'} width={'5%'} className="loader" />
+        </div>
         :
         <div className='appSection' >
           <Navbar />
@@ -23,12 +26,13 @@ function App() {
             <Route path="/" Component={Home} />
             <Route path="/details/:movieID" Component={Details} />
             <Route path="/*" Component={NotFoundPage} />
+            <Route path="/signin" Component={Signin} />
           </Routes>
         </div>
 
       }
 
-    </div>
+    </>
   )
 }
 

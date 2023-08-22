@@ -9,8 +9,8 @@ import Original from "./Original";
 import BigMovie from "./BigMovie";
 
 export default function SlideShow(props) {
-  const [counter,setCounter]=useState(0);
-  const [show,setShow]=useState(true);
+  const [counter, setCounter] = useState(0);
+  const [show, setShow] = useState(true);
 
   let settings = {
     dots: false,
@@ -75,7 +75,7 @@ export default function SlideShow(props) {
           />
         </div>
       )
-    } else if (props.component === "Original"){
+    } else if (props.component === "Original") {
       const backdropImage =
         item.images.backdrops && item.images.backdrops[3]
           ? `https://image.tmdb.org/t/p/w500/${item.images.backdrops[3].file_path}`
@@ -97,9 +97,8 @@ export default function SlideShow(props) {
         item.images.backdrops && item.images.backdrops[3]
           ? `https://image.tmdb.org/t/p/w500/${item.images.backdrops[3].file_path}`
           : `https://image.tmdb.org/t/p/w500/${item.poster_path}`;
-      
-      return (
-        <div key={item.id}>
+      const load = () => {
+        return (
           <BigMovie
             key={item.id}
             id={item.id}
@@ -107,10 +106,16 @@ export default function SlideShow(props) {
             bigImage={backdropImage}
             img={`https://image.tmdb.org/t/p/w500/${item.poster_path}`}
           />
+        )
+      }
+
+      return (
+        <div key={item.id}>
+          {load()}
         </div>
       );
     }
-    
+
 
   }
 
@@ -121,13 +126,13 @@ export default function SlideShow(props) {
 
   function SampleNextArrow(props) {
     const { onClick } = props;
-    if(!onClick){
+    if (!onClick) {
       setShow(false);
     }
     return (
       <div
-      className={show ?  "arrowKey arrowKeyRight":"inActive" }
-        onClick={()=>{onClick && onClick();onClick && setCounter(counter+1)}}
+        className={show ? "arrowKey arrowKeyRight" : "inActive"}
+        onClick={() => { onClick && onClick(); onClick && setCounter(counter + 1) }}
       >
         <IoIosArrowForward className="navIcon" />
       </div>
@@ -138,8 +143,8 @@ export default function SlideShow(props) {
     const { onClick } = props;
     return (
       <div
-      className={counter==0 ? "inActive" :"arrowKey arrowKeyLeft" }
-      onClick={()=>{onClick(); setCounter(counter-1);setShow(true);}}
+        className={counter == 0 ? "inActive" : "arrowKey arrowKeyLeft"}
+        onClick={() => { onClick(); setCounter(counter - 1); setShow(true); }}
       >
         <IoIosArrowBack className="navIcon" />
       </div>
@@ -151,7 +156,7 @@ export default function SlideShow(props) {
 
   return (
     <div className="slideShow">
-      {props.bigTitle && <h2 className="slideTitle">{props.bigTitle}</h2> }
+      {props.bigTitle && <h2 className="slideTitle">{props.bigTitle}</h2>}
       {props.secondTitle && <p className="secondTitle">{props.secondTitle}</p>}
       <Slider {...settings} className="slider">
         {movies}

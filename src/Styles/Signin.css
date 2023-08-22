@@ -1,0 +1,64 @@
+.signinChoose {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-top: 10%;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 10% 10% 10%;
+  padding: 8% 5% 0 5%;
+  background-color: white;
+}
+
+.signinChoose .left {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signinChoose .right {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  border-left: 0.1rem solid gray;
+  padding: 1% 0 0 3%;
+}
+
+.signinChoose h2 {
+  font-weight: 700;
+  margin-bottom: 5%;
+}
+
+.signinChoose h3 {
+    padding-top: 5%;
+  font-weight: 600;
+  font-size: large;
+}
+
+.signinChoose button {
+  text-align: left;
+  width: 80%;
+  margin: 3%;
+  height: 3rem;
+  background-color: white;
+  box-shadow: none;
+  border: 0.1rem solid gray;
+  font-weight: 700;
+}
+
+.signinChoose button > * {
+  font-size: 2rem;
+  margin:0 4% 0 2%;
+}
+
+.signinChoose .createNew {
+  background-color: orange;
+  text-align: center;
+}
+
+.signinChoose .showMore {
+  border: none;
+  color: rgb(105, 193, 223);
+  text-align: center;
+}

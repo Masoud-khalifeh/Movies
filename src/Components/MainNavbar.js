@@ -27,8 +27,8 @@ export default function MainNavbar() {
             <Offcanvas.Body>
 
               <Nav className="justify-content-end flex-grow-2 pe-5">
-                <Nav.Link href="#action2">Pro</Nav.Link>
-                <Nav.Link href="#action1">Menu</Nav.Link>
+                <Nav.Link as={Link} to={"/"}>Pro</Nav.Link>
+                <Nav.Link href="/">Menu</Nav.Link>
               </Nav>
 
               <Form className="d-flex">
@@ -42,7 +42,7 @@ export default function MainNavbar() {
               </Form>
 
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link href="#action2">Sign In</Nav.Link>
+                <Nav.Link as={Link} to={'/signin'}>Sign In</Nav.Link>
                 <Nav.Link href="#action2">Watchlist</Nav.Link>
                 <NavDropdown
                   title="En"
