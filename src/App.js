@@ -7,7 +7,9 @@ import Details from "./Pages/Details";
 import NotFoundPage from "./Pages/NotFoundPage";
 import Navbar from "./Components/MainNavbar";
 import ReactLoading from 'react-loading';
-import Signin from './Pages/Signin';
+import SigninChoose from './Pages/SigninChoose';
+import Signup from './Pages/Signup';
+import Login from './Pages/Login';
 
 
 function App() {
@@ -26,7 +28,9 @@ function App() {
             <Route path="/" Component={Home} />
             <Route path="/details/:movieID" Component={Details} />
             <Route path="/*" Component={NotFoundPage} />
-            <Route path="/signin" Component={Signin} />
+            <Route path="/signin-choose" Component={SigninChoose} />
+            <Route path="/Signup" Component={Signup} />
+            <Route path="/login" Component={Login} />
           </Routes>
         </div>
 

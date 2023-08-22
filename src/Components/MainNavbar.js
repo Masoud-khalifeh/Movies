@@ -42,7 +42,7 @@ export default function MainNavbar() {
               </Form>
 
               <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link as={Link} to={'/signin'}>Sign In</Nav.Link>
+                <Nav.Link as={Link} to={'/signin-choose'}>Sign In</Nav.Link>
                 <Nav.Link href="#action2">Watchlist</Nav.Link>
                 <NavDropdown
                   title="En"

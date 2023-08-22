@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { PiAmazonLogoFill } from "react-icons/pi";
 import { FcGoogle, FcApproval } from "react-icons/fc";
 import { BsApple, BsFacebook } from "react-icons/bs";
@@ -7,12 +7,18 @@ import { MdOutlineKeyboardArrowDown } from "react-icons/md";
 import '../Styles/Signin.css';
 import { useState } from "react";
 
-export default function Signin() {
+export default function SigninChoose() {
     const [showMore, setShowMore] = useState(false);
+
+    const navigate = useNavigate();
 
 
     function showMoreOptions() {
         setShowMore(true)
+    }
+
+    function createHandler() {
+        navigate('/Signup')
     }
 
     return (
@@ -29,7 +35,7 @@ export default function Signin() {
                     <button className="showMore" onClick={showMoreOptions}>Show more options <MdOutlineKeyboardArrowDown /></button>
                 }
 
-                <button className="createNew">Create a new Account</button>
+                <button className="createNew" onClick={createHandler}>Create a new Account</button>
                 <p>By signing in, you agree to IMDb's<Link> Conditions of Use </Link> and <Link>Privacy Policy</Link>.</p>
             </section>
             <section className="right">
