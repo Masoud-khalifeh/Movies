@@ -42,14 +42,13 @@ export default function Signup() {
             }
             setError(error);
         } else {
-            // addUser(user.name, user.email, user.password);
+            addUser(user.name, user.email, user.password);
             setUser({ name: "", email: "", password: "", rePassword: "" });
 
         }
-
-       
-
     }
+
+    
     return (
         <main className="signin">
             <section className="main">
@@ -59,7 +58,7 @@ export default function Signup() {
                         <Form.Label>Your name </Form.Label>
                         <Form.Control type="name" placeholder="Enter your name"
                             name="name" value={user.name} onChange={formHandler} />
-                        {error.name && <div class="alert alert-danger errorMessage" role="alert">
+                        {error.name && <div className="alert alert-danger errorMessage" role="alert">
                             {error.name}
                         </div>}
                     </Form.Group>
@@ -67,7 +66,7 @@ export default function Signup() {
                         <Form.Label>Email address</Form.Label>
                         <Form.Control type="email" placeholder="Enter your email"
                             name="email" value={user.email} onChange={formHandler} />
-                        {error.email && <div class="alert alert-danger errorMessage" role="alert">
+                        {error.email && <div className="alert alert-danger errorMessage" role="alert">
                             {error.email}
                         </div>}
                         <Form.Text className="text-muted">
@@ -78,7 +77,7 @@ export default function Signup() {
                         <Form.Label>Password</Form.Label>s
                         <Form.Control type="password" placeholder="Enter your password"
                             name="password" value={user.password} onChange={formHandler} />
-                        {error.password && <div class="alert alert-danger errorMessage" role="alert">
+                        {error.password && <div className="alert alert-danger errorMessage" role="alert">
                             {error.password}
                         </div>}
                     </Form.Group>
@@ -86,7 +85,7 @@ export default function Signup() {
                         <Form.Label>Repeat Password</Form.Label>s
                         <Form.Control type="password" placeholder="Enter your password again"
                             name="rePassword" value={user.rePassword} onChange={formHandler} />
-                        {error.rePassword && <div class="alert alert-danger errorMessage" role="alert">
+                        {error.rePassword && <div className="alert alert-danger errorMessage" role="alert">
                             {error.rePassword}
                         </div>}
                     </Form.Group>
