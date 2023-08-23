@@ -95,6 +95,12 @@
   background-color: white;
 }
 
+.signin .errorMessage {
+ margin-top: 2%;
+ padding: 1% 0 1% 2% ;
+ font-size: small;
+}
+
 @media (width<1000px) {
   .signinChoose {
     width: 120%;
