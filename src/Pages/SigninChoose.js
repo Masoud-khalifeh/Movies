@@ -42,7 +42,7 @@ export default function SigninChoose() {
                 <h2>
                     Benefits of your free account
                 </h2>
-                <p>
+                <div>
                     <h3>
                         Personalized Recommendations
                     </h3>
@@ -59,7 +59,7 @@ export default function SigninChoose() {
                         Contribute to this website
                     </h3>
                     Add data that will be seen by millions of people and get cool badges.
-                </p>
+                </div>
             </section>
         </main>
     )

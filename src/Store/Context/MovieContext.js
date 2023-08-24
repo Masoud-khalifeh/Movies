@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState, } from "react";
 import axios from "axios";
 
 export const MovieContextModule = createContext();
@@ -8,6 +8,7 @@ export default function MovieContext({ children }) {
     const authorization = 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3YzdmMDlmNWIwNWMwYjYxMzY4YjI2YzA1MWY4YjAwOCIsInN1YiI6IjY0ZDExMjA3NGQ2NzkxMDBjNTJkMzYwMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.lK2z6ziZKgS_uU3HGhbgjiOq3HwxfCzewCsfFJlRByA';
     const [loaded, setLoaded] = useState(false);
     const [screenPosition, setScreenPosition] = useState("");
+    const [user, setUser] = useState("");
 
 
 
@@ -15,7 +16,6 @@ export default function MovieContext({ children }) {
         fetchData();
 
     }, [])
-
 
 
     /////////////////////////////////////////////
@@ -204,7 +204,7 @@ export default function MovieContext({ children }) {
                 top: top,
                 behavior: "smooth",
             });
-        }, )
+        },)
     };
 
 
@@ -220,7 +220,8 @@ export default function MovieContext({ children }) {
 
             allMovies: allMovies, getVideo: getVideo, getDetails: getDetails,
             getListOfMovies: getListOfMovies, loaded: loaded, scrollToTop: scrollToTop,
-            getScreenPosition: getScreenPosition, screenPosition: screenPosition
+            getScreenPosition: getScreenPosition, screenPosition: screenPosition,
+            user: user, setUser: setUser
         }}>
             {children}
         </MovieContextModule.Provider>

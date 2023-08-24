@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { addUser } from "../Utilities/http";
+import { MovieContextModule } from "../Store/Context/MovieContext";
 
 export default function Signup() {
     const [user, setUser] = useState({ name: "", email: "", password: "", rePassword: "" });
     const [error, setError] = useState({});
 
+    const sharedData=useContext(MovieContextModule);
+    const navigate = useNavigate();
+
     function formHandler(evt) {
+        
         setUser({ ...user, [evt.target.name]: evt.target.value });
         setError({});
     }
@@ -18,9 +23,24 @@ export default function Signup() {
         return emailPattern.test(email);
     };
 
-    function submitHandler(evt) {
+    const isValidPassword = (password) => {
+        const minLength = 8;
+        const hasUppercase = /[A-Z]/.test(password);
+        const hasLowercase = /[a-z]/.test(password);
+        const hasNumber = /\d/.test(password);
+        // const hasSpecialChar = /[@#$%^&+=]/.test(password);
+
+        return (
+            password.length >= minLength &&
+            hasUppercase &&
+            hasLowercase &&
+            hasNumber
+            // hasSpecialChar
+        );
+    };
+    async function submitHandler(evt) {
         evt.preventDefault();
-        if (!isValidEmail(user.email) || !user.name || !user.email || !user.password || !(user.password === user.rePassword)) {
+        if (!isValidEmail(user.email) || !user.name || !user.email || !user.password || !(user.password === user.rePassword) || !isValidPassword(user.password)) {
             let error = {};
             if (!isValidEmail(user.email)) {
                 error = { ...error, email: "Email is wrong! !" }
@@ -33,22 +53,34 @@ export default function Signup() {
             }
             if (user.password === "") {
                 error = { ...error, password: "Fill the password please !" }
+            } else {
+                if (!isValidPassword(user.password)) {
+                    error = { ...error, password: "Password must be at least 8 character, combination of small letters, capital letters, and numbers." }
+                } else {
+                    if (user.rePassword === "") {
+                        error = { ...error, rePassword: "Fill the password please !" }
+                    }
+                    if (!(user.password === user.rePassword)) {
+                        error = { ...error, rePassword: "Password does not match !" }
+                    }
+                }
             }
-            if (user.rePassword === "") {
-                error = { ...error, rePassword: "Fill the password please !" }
-            }
-            if (!(user.password === user.rePassword)) {
-                error = { ...error, rePassword: "Password does not match !" }
-            }
+
+
             setError(error);
         } else {
-            addUser(user.name, user.email, user.password);
-            setUser({ name: "", email: "", password: "", rePassword: "" });
-
+            if (await addUser(user.name, user.email, user.password)==="User registered successfully")
+             {
+                navigate("/");
+                sharedData.setUser(user);
+                setUser({ name: "", email: "", password: "", rePassword: "" })
+            }else{
+                setError({...error, general:"Error in recording data"})
+            }
         }
     }
 
-    
+
     return (
         <main className="signin">
             <section className="main">
@@ -94,6 +126,9 @@ export default function Signup() {
                         onClick={submitHandler}>
                         Submit
                     </Button>
+                    {error.general && <div className="alert alert-danger errorMessage" role="alert">
+                            {error.general}
+                        </div>}
                 </Form>
                 <p>Already have an account? <Link to={"/login"}>Sign in</Link>  </p>
             </section>

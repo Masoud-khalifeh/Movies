@@ -10,6 +10,13 @@
   z-index: 99;
 }
 
+
+.navbarSection .profileIcon {
+  margin: auto 0;
+  font-size: large;
+  margin-right: -1%;
+}
+
 @media (width>1400px) {
   .navbarSection {
     width: 1400px;

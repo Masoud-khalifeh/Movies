@@ -1,3 +1,4 @@
+
 import { useContext } from 'react';
 import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home";
@@ -17,12 +18,6 @@ function App() {
   const sharedData = useContext(MovieContextModule);
 
   return (
-    <div className='whole'>
-      {!sharedData.loaded ?
-        <div className='loading'>
-          <ReactLoading type={"bars"} color={"white"} height={'5%'} width={'5%'} className="loader" />
-        </div>
-        :
         <div className='appSection' >
           <Routes>
             <Route path="/" element={<LoadPublicPages />} >
@@ -37,10 +32,6 @@ function App() {
             </Route>
           </Routes>
         </div>
-
-      }
-
-    </div>
   )
 }
 

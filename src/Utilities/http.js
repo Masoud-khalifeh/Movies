@@ -6,7 +6,6 @@ const url = "https://uiux-expert.de/movies/php/";
 
 export async function addUser(name, email, password) {
     const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync());
-    console.log(hashedPassword);
     try {
         let fData = new FormData();
         fData.append('name', name);
@@ -14,9 +13,7 @@ export async function addUser(name, email, password) {
         fData.append('password', hashedPassword);
 
         const result = await axios.post(`${url}add_user.php`, fData)
-            .then(response => JSON.parse(response.data));
-
-        console.log("res", result)
+            .then(response => response.data);
         return result;
     } catch (error) {
         return error.toString();
